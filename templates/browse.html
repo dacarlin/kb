@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}SEEK: Browse{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <!-- <h1>Thank you for your submission</h1>
+  <p class="lead">Submissions are reviewed by the SEEK Team, so please give us a few days before your
+    submission becomes public. The full SEEK database with your contribution is available below and both
+    <a href="">your submission</a> and the <a href="">complete database</a> are available in CSV format.</p>
+  <p class="lead"><small>Need help? Email the <a href="">SEEK Team</a></small></p> -->
+
+  <h1>Standardized database: kinetic constants</h1>
+  <p class="lead">Michaelis-Menten constants for our model systems</p>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Enzyme</th>
+      <th>Substrate</th>
+      <th>k<sub><em>cat</em></sub> (min<sup>&ndash;1</sup>)</th>
+      <th>K<sub><em>M</em></sub> (M)</th>
+      <th>Efficiency&nbsp;(M<sup>&minus;1</sup>min<sup>&minus;1</sup>)</th>
+      <th>Conservation</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>min<sup>&ndash;1</sup></td>
+      <td>M</td>
+      <td>1/M*min</td>
+      <td>Sequence logo</td>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for mutant_name, entry in entry_list %}
+    <tr data-toggle="collapse" data-target="#id_{{ entry.id }}" aria-expanded="false">
+      <td>
+        <b>BglB</b> <small>{{ mutant_name }}</small>
+      </td>
+
+      <td>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid={{entry.cid}}">pNPG</a>
+      </td>
+
+      <td style="background-color:{{entry.kcat}}">
+        {{entry.kcat}}
+      </td>
+
+      <td style="background-color:{{entry.km}}">
+        {{ entry.km }}
+      </td>
+
+      <td style="background-color:{{entry.kcatkm}}">
+        {{entry.kcatkm}}
+      </td>
+
+      <td class="seqlogo" style="background-image: url('');" /></td>
+    </tr>
+
+    <tr class="collapse" id="id_{{entry.id}}">
+      <td class="metadata" colspan=6>
+        <table>
+          <tr>
+            <td>
+                <p><strong>Published</strong> PLOS ONE, 2016 </p>
+                <p><strong>Protein expression</strong> {{ entry.expression }}</p>
+                <p><strong>Submitted by</strong> SEEK Team</p>
+            </td>
+
+            <td>
+              <img src="/static/blob.png" width=100 >
+            </td>
+            <td>
+              <p><a href="">Molecular model</a></p>
+              <p><a href="">Structural features</a></p>
+            </td>
+            <td>
+               <img height=100 src="data:image/png;base64,{{ entry.lin }}"/>
+            </td>
+            <td>
+              <p><a href="">Diagnostic plots</a></p>
+              <p><a href="">Raw data</a></p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+{%endfor%}
+</tbody>
+</table>
+
+{% endblock %}
