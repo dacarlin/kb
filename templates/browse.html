@@ -17,14 +17,14 @@
   <thead>
     <tr>
       <th>Enzyme</th>
-      <th>Soluble expression in <em>E. coli</em></th>
+      <th>Soluble<br>expression<br>in <em>E. coli</em></th>
       <th>Substrate</th>
       <th>k<sub><em>cat</em></sub> (min<sup>&ndash;1</sup>)</th>
       <th>K<sub><em>M</em></sub> (mM)</th>
-      <th>Efficiency&nbsp;(M<sup>&minus;1</sup>min<sup>&minus;1</sup>)</th>
-      <th>Conservation</th>
+      <th>k<sub><em>cat</em></sub>/K<sub><em>M</em></sub>&nbsp;(M<sup>&minus;1</sup>min<sup>&minus;1</sup>)</th>
+      <!-- <th>Frequency of residues in Pfam</th> -->
     </tr>
-    <tr>
+    <!-- <tr>
       <td></td>
       <td></td>
       <td></td>
@@ -32,7 +32,7 @@
       <td>M</td>
       <td>1/M*min</td>
       <td>Sequence logo</td>
-    </tr>
+    </tr> -->
   </thead>
   <tbody>
 
@@ -62,37 +62,16 @@
         {{ entry.kcatkm }}
       </td>
 
-      <td class="seqlogo" style="background-image: url('');" /></td>
+      <!-- <td class="seqlogo" style="background-position: -130px -{{ 147 + ( 25.5 * entry.sequence_pos ) }}px" /></td> -->
     </tr>
 
+    <!-- metadata drop-down clicky thing for each row -->
     <tr class="collapse" id="id_{{ loop.index }}">
-      <td class="metadata" colspan=7>
-        <table>
-          <tr>
-            <td>
-                <p><strong>Published</strong> PLOS ONE, 2016 </p>
-                <p><strong>Protein expression</strong> {{ entry.expression }}</p>
-                <p><strong>Submitted by</strong> SEEK Team</p>
-            </td>
-
-            <td>
-              <img src="/static/blob.png" width=100 >
-            </td>
-            <td>
-              <p><a href="">Molecular model</a></p>
-              <p><a href="">Structural features</a></p>
-            </td>
-            <td>
-               <img height=100 src="data:image/png;base64,{{ entry.lin }}"/>
-            </td>
-            <td>
-              <p><a href="">Diagnostic plots</a></p>
-              <p><a href="">Raw data</a></p>
-            </td>
-          </tr>
-        </table>
+      <td class="additional_data" colspan=100>
+        <p><strong>Published</strong> <a href="http://dx.doi.org/10.1371/journal.pone.0147596">PloS one, 2016</a> </p>
       </td>
-    </tr>
+    </tr> <!-- end item additional data -->
+
 {%endfor%}
 </tbody>
 </table>

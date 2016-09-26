@@ -49,15 +49,15 @@ bglb_color = {
 
 @app.template_filter( 'colorize' )
 def colorize( value, arg ): # value, value to compare to
-    if value == None: # it's missing
+    if np.isnan( value ):
         return 'rgba( 0,0,0,0 )'
     else:
-        result = math.floor( np.log( value / arg ) )
+        result = math.floor( np.log10( value / arg ) )
         if result <= -4:
-            return "rgba( 47, 79, 79, 1 )"
+            return "rgba( 0, 0, 1, 1 )"
         elif result >= 4:
-            return "rgb( 238, 220, 130 )"
+            return "rgb( 1, 0, 0, 1 )"
         elif -4 <= result <= 4:
             return bglb_color[ result ]
         else:
-            return 'rgba( 255, 0, 0, 0.2 )' #outside dyanamic range!
+            return 'rgba( 1, 0, 0, 1 )' #outside dyanamic range!

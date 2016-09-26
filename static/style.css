@@ -1,17 +1,19 @@
+
+
+/*home page*/
+
 h1.main {
-  background: url('blob.png') right center no-repeat; 
-  background-size: contain; 
+  background: url('blob.png') right center no-repeat;
+  background-size: contain;
 }
 
-form.analysis textarea { width: 100%;}
-form.analysis label { display: none; }
-
-td.metadata table tr td {
- padding: 1em;
+td.seqlogo {
+  background-image: url( '/static/logo_300_DPI.png' );
+  width: 300px;
+  border: 6px solid #fff;
 }
 
-.seqlogo {
-	background: no-repeat;
-	background-position: top left; 
-	background-size: 100%; 
+td.additional_data {
+  background-color: #eee;
+  padding: 1em; 
 }
