@@ -17,13 +17,15 @@
   <thead>
     <tr>
       <th>Enzyme</th>
+      <th>Soluble expression in <em>E. coli</em></th>
       <th>Substrate</th>
       <th>k<sub><em>cat</em></sub> (min<sup>&ndash;1</sup>)</th>
-      <th>K<sub><em>M</em></sub> (M)</th>
+      <th>K<sub><em>M</em></sub> (mM)</th>
       <th>Efficiency&nbsp;(M<sup>&minus;1</sup>min<sup>&minus;1</sup>)</th>
       <th>Conservation</th>
     </tr>
     <tr>
+      <td></td>
       <td></td>
       <td></td>
       <td>min<sup>&ndash;1</sup></td>
@@ -35,32 +37,36 @@
   <tbody>
 
 {% for mutant_name, entry in entry_list %}
-    <tr data-toggle="collapse" data-target="#id_{{ entry.id }}" aria-expanded="false">
+    <tr data-toggle="collapse" data-target="#id_{{ loop.index }}" aria-expanded="false">
       <td>
         <b>BglB</b> <small>{{ mutant_name }}</small>
+      </td>
+
+      <td style="background-color: rgba(0,0,0,{{ entry.expression }})">
+        {{ entry.expression }}
       </td>
 
       <td>
         <a href="https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid={{entry.cid}}">pNPG</a>
       </td>
 
-      <td style="background-color:{{entry.kcat}}">
-        {{entry.kcat}}
+      <td style="background-color:{{entry.kcat|colorize( 880 )}}">
+        {{ entry.kcat }}
       </td>
 
-      <td style="background-color:{{entry.km}}">
+      <td style="background-color:{{entry.kcat|colorize( 5.5 )}}">
         {{ entry.km }}
       </td>
 
-      <td style="background-color:{{entry.kcatkm}}">
-        {{entry.kcatkm}}
+      <td style="background-color:{{entry.kcat|colorize( 174000 )}}">
+        {{ entry.kcatkm }}
       </td>
 
       <td class="seqlogo" style="background-image: url('');" /></td>
     </tr>
 
-    <tr class="collapse" id="id_{{entry.id}}">
-      <td class="metadata" colspan=6>
+    <tr class="collapse" id="id_{{ loop.index }}">
+      <td class="metadata" colspan=7>
         <table>
           <tr>
             <td>
@@ -90,5 +96,4 @@
 {%endfor%}
 </tbody>
 </table>
-
 {% endblock %}
